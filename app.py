@@ -1,35 +1,3 @@
-
-from pathlib import Path
-from datetime import date
-
-import streamlit as st
-from openpyxl import load_workbook
-
-# =====================================================
-# KONFIGURASI APLIKASI
-# =====================================================
-
-st.set_page_config(
-    page_title="RAB Generator",
-    page_icon="📊",
-    layout="wide",
-)
-
-MASTER_FILE = Path("Master/Master_RAB_Generator.xlsx")
-
-st.title("RAB Generator")
-st.caption(
-    "V1 — Form data event, upload FK/JK, dan pemeriksaan input"
-)
-
-
-# =====================================================
-# MEMBACA MASTER EXCEL
-# =====================================================
-
-@st.cache_data
-def load_master_data(file_path, modified_time):
-    if not Path(file_path).exists():
         raise FileNotFoundError(
             f"File master tidak ditemukan: {file_path}"
         )
@@ -113,7 +81,7 @@ try:
     if not MASTER_FILE.exists():
         st.error(
             "File master belum tersedia. Pastikan file "
-            "`Master_RAB_Generator.xlsx` berada di folder `master/`."
+            "`Master_RAB_Generator.xlsx` berada di folder `Master/`."
         )
         st.stop()
 
@@ -146,8 +114,8 @@ if not locations:
 
 st.header("1. Data Event")
 
+# Semua input dan tombol submit harus berada di dalam form yang sama.
 with st.form("rab_form"):
-
     col1, col2 = st.columns(2)
 
     with col1:
@@ -163,19 +131,17 @@ with st.form("rab_form"):
             placeholder="Pilih kategori",
         )
 
-        
-akomodasi = st.selectbox(
-    "Akomodasi *",
-    options=[
-        "Ditanggung Penyelenggara",
-        "Tidak Ditanggung Penyelenggara",
-    ],
-    index=None,
-    placeholder="Pilih status akomodasi",
-)
+        akomodasi = st.selectbox(
+            "Akomodasi *",
+            options=[
+                "Ditanggung Penyelenggara",
+                "Tidak Ditanggung Penyelenggara",
+            ],
+            index=None,
+            placeholder="Pilih status akomodasi",
+        )
 
-
-location_labels = [
+        location_labels = [
             (
                 f"{item['name']} — Indeks: {item['index']}"
                 if item["index"] is not None
@@ -184,127 +150,11 @@ location_labels = [
             for item in locations
         ]
 
-selected_location = st.selectbox(
+        selected_location = st.selectbox(
             "Indeks Lokasi *",
             options=location_labels,
             index=None,
             placeholder="Pilih lokasi",
         )
 
-tanggal_mulai = st.date_input(
-            "Tanggal Pelaksanaan *",
-            value=None,
-        )
-
-with col2:
-    tanggal_selesai = st.date_input(
-            "Tanggal Selesai *",
-            value=None,
-        )
-
-    lokasi_event = st.text_input(
-            "Lokasi Event *",
-            placeholder="Kota atau lokasi kegiatan",
-        )
-
-cc_labels = [
-            f"{item['code']} — {item['description']}"
-            for item in cost_centers
-        ]
-
-selected_cc = st.selectbox(
-            "Cost Center *",
-            options=cc_labels,
-            index=None,
-            placeholder="Pilih Cost Center",
-        )
-
-account_labels = [
-            f"{item['code']} — {item['description']}"
-            for item in accounts
-        ]
-
-selected_account = st.selectbox(
-            "Akun Beban Anggaran *",
-            options=account_labels,
-            index=None,
-            placeholder="Pilih akun anggaran",
-        )
-
-st.divider()
-
-st.header("2. Upload Dokumen FK/JK")
-
-uploaded_file = st.file_uploader(
-        "Pilih dokumen FK/JK",
-        type=["pdf", "png", "jpg", "jpeg"],
-        help="Format yang didukung: PDF, PNG, JPG, dan JPEG.",
-    )
-
-submitted = st.form_submit_button(
-        "Create RAB",
-        type="primary",
-        use_container_width=True,
-    )
-
-
-# =====================================================
-# VALIDASI V1
-# =====================================================
-
-if submitted:
-    errors = []
-
-    if not event_id.strip():
-        errors.append("Event ID wajib diisi.")
-
-    if not kategori:
-        errors.append("Kategori Event wajib dipilih.")
-
-    if not selected_location:
-        errors.append("Indeks Lokasi wajib dipilih.")
-
-    if not selected_cc:
-        errors.append("Cost Center wajib dipilih.")
-
-    if not selected_account:
-        errors.append("Akun Beban Anggaran wajib dipilih.")
-
-    if not lokasi_event.strip():
-        errors.append("Lokasi Event wajib diisi.")
-
-    if tanggal_mulai is None:
-        errors.append("Tanggal Pelaksanaan wajib diisi.")
-
-    if tanggal_selesai is None:
-        errors.append("Tanggal Selesai wajib diisi.")
-
-    if (
-        tanggal_mulai is not None
-        and tanggal_selesai is not None
-        and tanggal_selesai < tanggal_mulai
-    ):
-        errors.append(
-            "Tanggal Selesai tidak boleh lebih awal "
-            "daripada Tanggal Pelaksanaan."
-        )
-
-    if not uploaded_file:
-        errors.append("Dokumen FK/JK wajib diunggah.")
-
-    if not akomodasi:
-        errors.append("Akomodasi wajib dipilih.")
-
-    if errors:
-        st.error("Data belum dapat diproses:")
-        for error in errors:
-            st.write(f"- {error}")
-    else:
-        st.success("Input awal lolos validasi.")
-
-        st.info(
-            "Form V1 sudah menerima input. "
-            "Tahap berikutnya adalah membaca isi FK/JK, "
-            "menerapkan aturan master, menghitung RAB, "
-            "dan menghasilkan Excel sesuai TEMPLATE RAB."
-        )
+        tanggal_mulai = st.date_input(
