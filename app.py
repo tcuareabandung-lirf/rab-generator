@@ -233,7 +233,7 @@ selected_account = st.selectbox(
 
 st.divider()
 
-    st.header("2. Upload Dokumen FK/JK")
+st.header("2. Upload Dokumen FK/JK")
 
     uploaded_file = st.file_uploader(
         "Pilih dokumen FK/JK",
