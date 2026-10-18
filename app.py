@@ -15,7 +15,7 @@ st.set_page_config(
     layout="wide",
 )
 
-MASTER_FILE = Path("master/Master_RAB_Generator.xlsx")
+MASTER_FILE = Path("Master/Master_RAB_Generator.xlsx")
 
 st.title("RAB Generator")
 st.caption(
