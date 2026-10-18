@@ -241,11 +241,19 @@ uploaded_file = st.file_uploader(
         help="Format yang didukung: PDF, PNG, JPG, dan JPEG.",
     )
 
-submitted = st.form_submit_button(
+with st.form("rab_form"):
+    # Input data RAB Anda tetap di sini
+    nama_pekerjaan = st.text_input("Nama Pekerjaan")
+
+    submitted = st.form_submit_button(
         "Create RAB",
         type="primary",
         use_container_width=True,
     )
+
+if submitted:
+    # Proses pembuatan RAB dijalankan di sini
+    st.success("Form berhasil dikirim.")
 
 
 # =====================================================
