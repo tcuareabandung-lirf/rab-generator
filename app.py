@@ -231,7 +231,7 @@ selected_account = st.selectbox(
             placeholder="Pilih akun anggaran",
         )
 
-    st.divider()
+st.divider()
 
     st.header("2. Upload Dokumen FK/JK")
 
