@@ -212,7 +212,7 @@ cc_labels = [
             for item in cost_centers
         ]
 
-        selected_cc = st.selectbox(
+selected_cc = st.selectbox(
             "Cost Center *",
             options=cc_labels,
             index=None,
