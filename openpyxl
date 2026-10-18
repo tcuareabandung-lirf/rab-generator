@@ -1,0 +1,18 @@
+from openpyxl import load_workbook
+from io import BytesIO
+
+# Buka template RAB asli
+wb = load_workbook("Master_RAB_Generator.xlsx")
+
+# Pilih sheet template yang akan diisi
+ws = wb["TEMPLATE RAB"]
+
+# Contoh pengisian — alamat sel harus disesuaikan
+# dengan posisi sebenarnya di template perusahaan
+ws["E9"] = "ID Event"
+ws["E11"] = "Nama Kegiatan"
+
+# Siapkan file untuk diunduh
+output = BytesIO()
+wb.save(output)
+output.seek(0)
