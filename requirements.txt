@@ -1,5 +1,0 @@
-streamlit
-openpyxl
-pandas
-pypdf
-Pillow
