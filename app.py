@@ -224,7 +224,7 @@ account_labels = [
             for item in accounts
         ]
 
-        selected_account = st.selectbox(
+selected_account = st.selectbox(
             "Akun Beban Anggaran *",
             options=account_labels,
             index=None,
@@ -241,7 +241,7 @@ account_labels = [
         help="Format yang didukung: PDF, PNG, JPG, dan JPEG.",
     )
 
-    submitted = st.form_submit_button(
+submitted = st.form_submit_button(
         "Create RAB",
         type="primary",
         use_container_width=True,
