@@ -196,13 +196,13 @@ tanggal_mulai = st.date_input(
             value=None,
         )
 
-    with col2:
-        tanggal_selesai = st.date_input(
+with col2:
+    tanggal_selesai = st.date_input(
             "Tanggal Selesai *",
             value=None,
         )
 
-        lokasi_event = st.text_input(
+    lokasi_event = st.text_input(
             "Lokasi Event *",
             placeholder="Kota atau lokasi kegiatan",
         )
