@@ -175,7 +175,7 @@ akomodasi = st.selectbox(
 )
 
 
-        location_labels = [
+location_labels = [
             (
                 f"{item['name']} — Indeks: {item['index']}"
                 if item["index"] is not None
