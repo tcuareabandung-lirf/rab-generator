@@ -174,6 +174,7 @@ akomodasi = st.selectbox(
     placeholder="Pilih status akomodasi",
 )
 
+
         location_labels = [
             (
                 f"{item['name']} — Indeks: {item['index']}"
