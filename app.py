@@ -184,14 +184,14 @@ location_labels = [
             for item in locations
         ]
 
-        selected_location = st.selectbox(
+selected_location = st.selectbox(
             "Indeks Lokasi *",
             options=location_labels,
             index=None,
             placeholder="Pilih lokasi",
         )
 
-        tanggal_mulai = st.date_input(
+tanggal_mulai = st.date_input(
             "Tanggal Pelaksanaan *",
             value=None,
         )
