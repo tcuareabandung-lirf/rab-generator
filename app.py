@@ -163,12 +163,16 @@ with st.form("rab_form"):
             placeholder="Pilih kategori",
         )
 
-        # Belum diisi dengan opsi bisnis karena sumber
-        # resmi dropdown akomodasi masih perlu dipastikan.
-        akomodasi = st.selectbox(
-            "Akomodasi *",
-            options=["Belum dikonfigurasi"],
-        )
+        
+akomodasi = st.selectbox(
+    "Akomodasi *",
+    options=[
+        "Ditanggung Penyelenggara",
+        "Tidak Ditanggung Penyelenggara",
+    ],
+    index=None,
+    placeholder="Pilih status akomodasi",
+)
 
         location_labels = [
             (
@@ -287,10 +291,8 @@ if submitted:
     if not uploaded_file:
         errors.append("Dokumen FK/JK wajib diunggah.")
 
-    if akomodasi == "Belum dikonfigurasi":
-        errors.append(
-            "Opsi Akomodasi belum dikonfigurasi berdasarkan master resmi."
-        )
+    if not akomodasi:
+    errors.append("Akomodasi wajib dipilih.")
 
     if errors:
         st.error("Data belum dapat diproses:")
