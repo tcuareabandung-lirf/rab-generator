@@ -235,7 +235,7 @@ st.divider()
 
 st.header("2. Upload Dokumen FK/JK")
 
-    uploaded_file = st.file_uploader(
+uploaded_file = st.file_uploader(
         "Pilih dokumen FK/JK",
         type=["pdf", "png", "jpg", "jpeg"],
         help="Format yang didukung: PDF, PNG, JPG, dan JPEG.",
