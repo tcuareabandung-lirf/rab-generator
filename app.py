@@ -241,7 +241,7 @@ uploaded_file = st.file_uploader(
         help="Format yang didukung: PDF, PNG, JPG, dan JPEG.",
     )
 
-    submitted = st.form_submit_button(
+submitted = st.form_submit_button(
         "Create RAB",
         type="primary",
         use_container_width=True,
