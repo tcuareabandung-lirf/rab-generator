@@ -219,7 +219,7 @@ selected_cc = st.selectbox(
             placeholder="Pilih Cost Center",
         )
 
-        account_labels = [
+account_labels = [
             f"{item['code']} — {item['description']}"
             for item in accounts
         ]
