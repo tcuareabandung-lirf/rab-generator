@@ -293,7 +293,7 @@ if submitted:
         errors.append("Dokumen FK/JK wajib diunggah.")
 
     if not akomodasi:
-    errors.append("Akomodasi wajib dipilih.")
+        errors.append("Akomodasi wajib dipilih.")
 
     if errors:
         st.error("Data belum dapat diproses:")
