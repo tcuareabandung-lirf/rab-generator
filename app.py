@@ -207,7 +207,7 @@ with col2:
             placeholder="Kota atau lokasi kegiatan",
         )
 
-        cc_labels = [
+cc_labels = [
             f"{item['code']} — {item['description']}"
             for item in cost_centers
         ]
